@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GMinsta</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<header class="top-bar">
+
+    <button
+        class="top-icon"
+        onclick="openAddStory()"
+    >
+        <i class="fa-solid fa-plus"></i>
+    </button>
+
+
+    <h1>
+        GMinsta
+    </h1>
+
+
+    <button class="top-icon">
+
+        <i class="fa-regular fa-heart"></i>
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================
+     STORIES
+========================= -->
+
+<section class="stories">
+
+
+    <!-- YOUR STORY -->
+
+    <div
+        class="story"
+        onclick="openAddStory()"
+    >
+
+        <div class="story-circle your-story">
+
+            <div class="story-profile">
+                K
+            </div>
+
+            <span class="add-story">
+                +
+            </span>
+
+        </div>
+
+        <p>
+            Your story
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     CREATE POST
+========================= -->
+
+<section class="create-post">
+
+
+    <div class="create-top">
+
+
+        <div class="my-profile">
+            K
+        </div>
+
+
+        <input
+            id="postContent"
+            type="text"
+            placeholder="What's on your mind?"
+        >
+
+
+    </div>
+
+
+
+    <div class="post-options">
+
+
+        <label
+            for="imageInput"
+            style="cursor:pointer;"
+        >
+
+            <i class="fa-regular fa-image"></i>
+
+            Photo
+
+        </label>
+
+
+        <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            hidden
+        >
+
+
+        <span id="selectedImage"></span>
+
+
+        <button
+            class="create-button"
+            onclick="createPost()"
+        >
+
+            Post
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     POSTS
+========================= -->
+
+<section id="posts">
+
+</section>
+
+
+
+<!-- =========================
+     PROFILE PAGE
+========================= -->
+
+<section
+    id="profilePage"
+    class="profile-page"
+    style="display:none;"
+>
+
+
+    <!-- PROFILE TOP -->
+
+    <div class="profile-top">
+
+
+        <button
+            class="profile-back"
+            onclick="showHome()"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+
+        <h2>
+            Profile
+        </h2>
+
+
+        <button class="profile-menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- PROFILE INFORMATION -->
+
+    <div class="profile-info">
+
+
+        <div
+            class="large-profile"
+            onclick="addProfilePhoto()"
+        >
+
+            K
+
+        </div>
+
+
+
+        <div class="profile-stats">
+
+
+            <!-- POSTS -->
+
+            <div>
+
+                <strong id="profilePostCount">
+                    0
+                </strong>
+
+                <span>
+                    Posts
+                </span>
+
+            </div>
+
+
+            <!-- FOLLOWERS -->
+
+            <div>
+
+                <strong>
+                    0
+                </strong>
+
+                <span>
+                    Followers
+                </span>
+
+            </div>
+
+
+            <!-- FOLLOWING -->
+
+            <div>
+
+                <strong id="followingCount">
+                    0
+                </strong>
+
+                <span>
+                    Following
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- PROFILE BUTTONS -->
+
+    <div class="profile-buttons">
+
+
+        <button
+            onclick="editProfile()"
+        >
+            Edit profile
+        </button>
+
+
+        <button
+            onclick="shareProfile()"
+        >
+            Share profile
+        </button>
+
+
+    </div>
+
+
+
+    <!-- PROFILE TABS -->
+
+    <div class="profile-tabs">
+
+
+        <button class="active-tab">
+
+            <i class="fa-solid fa-table-cells"></i>
+
+        </button>
+
+
+        <button>
+
+            <i class="fa-regular fa-bookmark"></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- PROFILE POSTS -->
+
+    <div
+        id="profilePosts"
+        class="profile-posts"
+    >
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     STORY INPUT
+========================= -->
+
+<input
+    type="file"
+    id="storyInput"
+    accept="image/*,video/*"
+    multiple
+    hidden
+    onchange="handleStory(event)"
+>
+
+
+
+<!-- =========================
+     STORY VIEWER
+========================= -->
+
+<div
+    id="storyViewer"
+    class="story-viewer"
+>
+
+
+    <!-- STORY PROGRESS -->
+
+    <div class="story-progress">
+
+        <div id="storyProgress"></div>
+
+    </div>
+
+
+
+    <!-- STORY HEADER -->
+
+    <div class="story-header">
+
+
+        <div class="story-user">
+
+
+            <div class="story-user-photo">
+                K
+            </div>
+
+
+            <strong>
+                krutika01
+            </strong>
+
+
+            <span>
+                Just now
+            </span>
+
+
+        </div>
+
+
+        <button
+            onclick="closeStory()"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- STORY CONTENT -->
+
+    <div
+        id="storyContent"
+        class="story-content"
+    >
+
+    </div>
+
+
+
+    <!-- STORY BOTTOM -->
+
+    <div class="story-bottom">
+
+
+        <input
+            type="text"
+            placeholder="Send message..."
+        >
+
+
+        <button>
+
+            <i class="fa-regular fa-heart"></i>
+
+        </button>
+
+
+        <button>
+
+            <i class="fa-regular fa-paper-plane"></i>
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+<nav class="bottom-navigation">
+
+
+    <!-- HOME -->
+
+    <button
+        class="bottom-item active"
+        onclick="showHome()"
+    >
+
+        <i class="fa-solid fa-house"></i>
+
+    </button>
+
+
+
+    <!-- REELS -->
+
+    <button class="bottom-item">
+
+        <i class="fa-regular fa-circle-play"></i>
+
+    </button>
+
+
+
+    <!-- MESSAGES -->
+
+    <button class="bottom-item">
+
+        <i class="fa-regular fa-paper-plane"></i>
+
+        <span class="notification-dot"></span>
+
+    </button>
+
+
+
+    <!-- SEARCH -->
+
+    <button class="bottom-item">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+    </button>
+
+
+
+    <!-- PROFILE -->
+
+    <button
+        class="bottom-item"
+        onclick="showProfile()"
+    >
+
+        <div class="bottom-profile">
+            K
+        </div>
+
+        <span class="profile-dot"></span>
+
+    </button>
+
+
+</nav>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
